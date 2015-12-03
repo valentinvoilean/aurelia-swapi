@@ -2,17 +2,34 @@
   <require from="filters/profile-id"></require>
 
   <section class="au-animate">
-      <h2>${heading}</h2>
-      <div class="row au-stagger">
-        <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="person of people">
-            <div class="card">
-                <div class="content">
-                    <h2 class="name">${person.name}</h2>
+    <h2>${heading}</h2>
 
-                    <p><a target="_blank" class="btn btn-default" href.bind="person.url | profileId:'person'">View Profile</a></p>
-                </div>
-            </div>
+    <div class="row searchBar">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <input type="text" class="form-control" aria-label="Filter by name" placeholder="Search name.." value.bind="name">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort direction <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#">Ascending</a></li>
+              <li><a href="#">Descending</a></li>
+            </ul>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="person of people | nameFilter: name">
+        <div class="card">
+          <div class="content">
+            <h2 class="name">${person.name}</h2>
+            <p><a target="_blank" class="btn btn-default" href.bind="person.url | profileId:'person'">View Profile</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 </template>
