@@ -8,6 +8,7 @@ var paths = require('../paths');
 var compilerOptions = require('../babel-options');
 var assign = Object.assign || require('object.assign');
 var notify = require("gulp-notify");
+var sass = require('gulp-sass');
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents 'pipe breaking' caused
@@ -30,11 +31,13 @@ gulp.task('build-html', function() {
     .pipe(gulp.dest(paths.output));
 });
 
-// copies changed css files to the output directory
-gulp.task('build-css', function() {
-  return gulp.src(paths.css)
-    .pipe(changed(paths.output, {extension: '.css'}))
-    .pipe(gulp.dest(paths.output));
+// compile scss files to the output directory
+gulp.task('build-scss', function () {
+  gulp.src(paths.scss)
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.stylesOutput));
 });
 
 // this task calls the clean task (located
@@ -44,7 +47,7 @@ gulp.task('build-css', function() {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'build-css'],
+    ['build-system', 'build-html', 'build-scss'],
     callback
   );
 });
