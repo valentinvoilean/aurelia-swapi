@@ -1,8 +1,9 @@
-let viewModelPath = './view-model/';
+let viewModelPath = '../view-model/';
 
-export class App {
+export class ChildRouter {
+  heading = 'Child Router';
+
   configureRouter(config, router) {
-    config.title = 'Aurelia';
     config.map([
       {route: ['', 'welcome'], name: 'welcome', moduleId: `${viewModelPath}welcome`, nav: true, title: 'Welcome'},
       {route: 'users', name: 'users', moduleId: `${viewModelPath}users`, nav: true, title: 'Github Users'},
