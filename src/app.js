@@ -1,14 +1,32 @@
-let viewModelPath = './view-model/';
+import {inject} from 'aurelia-framework';
+import {Router} from 'aurelia-router';
+import {HttpClient} from 'aurelia-http-client';
+import 'bootstrap';
+import 'bootstrap/css/bootstrap.css!';
 
+let pagesPath = './pages';
+
+@inject(Router, HttpClient)
 export class App {
-  configureRouter(config, router) {
-    config.title = 'Aurelia';
-    config.map([
-      {route: ['', 'welcome'], name: 'welcome', moduleId: `${viewModelPath}welcome`, nav: true, title: 'Welcome'},
-      {route: 'users', name: 'users', moduleId: `${viewModelPath}users`, nav: true, title: 'Github Users'},
-      {route: 'child-router', name: 'child-router', moduleId: `${viewModelPath}child-router`, nav: true, title: 'Child Router'}
-    ]);
-
+  constructor(router, client) {
     this.router = router;
+    this.client = client;
+
+    this.router.configure(config => {
+      config.title = 'SWAPI';
+      config.map([
+        {route: ['', 'people'], name: 'people', moduleId: `${pagesPath}/people`, nav: true, title: 'People'}
+
+        /*{route: ['', 'contacts'], moduleId: './contacts', nav: true, title: 'Contacts'},
+        {route: 'contacts/!*id', moduleId: './edit', title: 'Edit Contact'},
+        {route: 'insert', moduleId: './insert', title: 'Insert Contact'}*/
+      ]);
+    });
+
+    this.client.configure(x => {
+      x.withBaseUrl('http://swapi.co/api/');
+      x.withHeader('accept', 'application/json')
+    });
+
   }
 }

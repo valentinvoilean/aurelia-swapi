@@ -4,22 +4,22 @@ import 'fetch';
 
 @inject(HttpClient)
 export class Users {
-  heading = 'Github Users';
-  users = [];
+  heading = 'Star Wars People';
+  people = [];
 
   constructor(http) {
     http.configure(config => {
       config
         .useStandardConfiguration()
-        .withBaseUrl('https://api.github.com/');
+        .withBaseUrl('http://swapi.co/api/');
     });
 
     this.http = http;
   }
 
   activate() {
-    return this.http.fetch('users')
+    return this.http.fetch('people')
       .then(response => response.json())
-      .then(users => this.users = users);
+      .then(data => this.people = data.results);
   }
 }
