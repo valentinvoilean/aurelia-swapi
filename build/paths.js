@@ -1,7 +1,7 @@
 var appRoot = 'src/';
 var outputRoot = 'dist/';
 var exporSrvtRoot = 'export/';
-var stylesRoot = 'styles/';
+var assetsRoot = 'assets/';
 
 module.exports = {
   root: appRoot,
@@ -9,7 +9,7 @@ module.exports = {
   html: appRoot + '**/*.html',
   scss: appRoot + 'styles/*.scss',
   output: outputRoot,
-  stylesOutput: stylesRoot,
+  stylesOutput: assetsRoot + 'css/',
   exportSrv: exporSrvtRoot,
   doc: './doc',
   e2eSpecsSrc: 'test/e2e/src/*.js',
