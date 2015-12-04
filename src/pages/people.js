@@ -7,25 +7,31 @@ export class Users {
   heading = 'Star Wars People';
   people = [];
   sortDirection = 1;
+  baseUrl = 'http://swapi.co/api/';
 
   constructor(http) {
-    http.configure(config => {
-      config
-        .useStandardConfiguration()
-        .withBaseUrl('http://swapi.co/api/');
-    });
-
     this.http = http;
   }
 
   activate() {
-    return this.http.fetch('people')
+    return this.http.fetch(`${this.baseUrl}people`)
       .then(response => response.json())
-      .then(data => this.people = data.results);
+      .then(data => this.extractInfo(data.results));
   }
 
   updateSortDirection(param) {
     this.sortDirection = (param?param:1);
+  }
+
+  extractInfo(data) {
+    // get the planet name for each person
+    data.forEach((val) => {
+        if (val && val.hasOwnProperty('homeworld'))
+        this.http.fetch(val.homeworld).then(response => response.json()).then(data => val.homeworldname = data.name);
+      }
+    );
+
+    this.people = data;
   }
 }
 
