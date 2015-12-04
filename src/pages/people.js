@@ -6,6 +6,7 @@ import 'fetch';
 export class Users {
   heading = 'Star Wars People';
   people = [];
+  sortDirection = 1;
 
   constructor(http) {
     http.configure(config => {
@@ -22,22 +23,22 @@ export class Users {
       .then(response => response.json())
       .then(data => this.people = data.results);
   }
-}
 
-export class SortValueConverter {
-  toView(array, propertyName, direction) {
-    let factor = direction === 'ascending' ? 1 : -1;
-
-    return array
-      .slice(0)
-      .sort((a, b) => {
-        return (a[propertyName] - b[propertyName]) * factor
-      });
+  updateSortDirection(param) {
+    this.sortDirection = (param?param:1);
   }
 }
 
 export class nameFilterValueConverter {
-  toView(people, text) {
-      return (text?people.filter(value => value.name.toLowerCase().indexOf(text.toLowerCase()) > -1):people);
+  toView(people, text, sortDirection) {
+    let finalArray;
+
+    // filter
+    finalArray = (text ? people.filter(value => value.name.toLowerCase().indexOf(text.toLowerCase()) > -1) : people);
+
+    // sort
+    finalArray.sort((a,b) => (a.name > b.name) ? 1 * sortDirection  : ((b.name > a.name) ? -1 * sortDirection : 0) );
+
+    return finalArray;
   }
 }
