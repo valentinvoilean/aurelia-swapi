@@ -29,16 +29,16 @@ export class Users {
   }
 }
 
-export class nameFilterValueConverter {
-  toView(people, text, sortDirection) {
-    let finalArray;
+export class SortValueConverter {
+  toView(array, direction) {
+    return array
+      .slice(0)
+      .sort((a, b) =>  (a.name > b.name) ? direction  : ((b.name > a.name) ? -direction : 0));
+  }
+}
 
-    // filter
-    finalArray = (text ? people.filter(value => value.name.toLowerCase().indexOf(text.toLowerCase()) > -1) : people);
-
-    // sort
-    finalArray.sort((a,b) => (a.name > b.name) ? 1 * sortDirection  : ((b.name > a.name) ? -1 * sortDirection : 0) );
-
-    return finalArray;
+export class FilterValueConverter {
+  toView(people, text) {
+    return (text ? people.filter(value => value.name.toLowerCase().indexOf(text.toLowerCase()) > -1) : people);
   }
 }
