@@ -1,0 +1,74 @@
+<template>
+  <require from="filters/profile-id"></require>
+
+  <section>
+    <h2>${person.name}</h2>
+    <table class="table table-striped">
+      <tr>
+        <td>Height</td>
+        <td>${person.height}</td>
+      </tr>
+      <tr>
+        <td>Weight</td>
+        <td>${person.mass}</td>
+      </tr>
+      <tr>
+        <td>Hair Color</td>
+        <td>${person.hair_color}</td>
+      </tr>
+      <tr>
+        <td>Skin Color</td>
+        <td>${person.skin_color}</td>
+      </tr>
+      <tr>
+        <td>Eye Color</td>
+        <td>${person.eye_color}</td>
+      </tr>
+      <tr>
+        <td>Birth Year</td>
+        <td>${person.birth_year}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>${person.gender}</td>
+      </tr>
+      <tr>
+        <td>Home Planet</td>
+        <td>${person.homeworldname}</td>
+      </tr>
+      <tr>
+        <td>Films</td>
+        <td>
+          <ul>
+            <li repeat.for="filmname of person.filmnames"><a href="#">${filmname}</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>species</td>
+        <td>
+          <ul>
+            <li repeat.for="speciename of person.speciesnames"><a href="#">${speciename}</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>vehicles</td>
+        <td>
+          <ul>
+            <li repeat.for="vehiclename of person.vehiclenames"><a href="#">${vehiclename}</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>starships</td>
+        <td>
+          <ul>
+            <li repeat.for="starshipname of person.starshipnames"><a href="#">${starshipname}</a></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+  </section>
+</template>

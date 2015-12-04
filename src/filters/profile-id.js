@@ -9,6 +9,6 @@
  */
 export class ProfileIdValueConverter {
   toView(url,format) {
-    return (!!url && !!format) ? format + '/' + url.split('/').slice(-2, -1)[0] : '';
+    return (!!url && !!format) ? '#/' + format + '/' + url.split('/').slice(-2, -1)[0] : '';
   }
 }
