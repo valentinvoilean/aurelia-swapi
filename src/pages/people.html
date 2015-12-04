@@ -25,12 +25,24 @@
       <thead>
       <tr>
         <th>Name</th>
+        <th>Height</th>
+        <th>Weight</th>
+        <th>Hair color</th>
+        <th>Skin color</th>
+        <th>Home Planet</th>
       </tr>
       </thead>
       <tbody>
       <tr repeat.for="person of people | filter: searchName | sort:sortDirection">
         <td>
           <a target="_blank" href.bind="person.url | profileId:'person'">${person.name}</a>
+        </td>
+        <td>${person.height}</td>
+        <td>${person.mass}</td>
+        <td>${person.hair_color}</td>
+        <td>${person.skin_color}</td>
+        <td>
+          <a target="_blank" href.bind="person.homeworld | profileId:'planets'">${person.homeworld}</a>
         </td>
       </tr>
       </tbody>
