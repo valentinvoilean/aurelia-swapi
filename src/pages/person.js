@@ -19,17 +19,9 @@ export class Users {
       .then(data => this.extractInfo(data));
   }
 
-  updateSortDirection(param) {
-    this.sortDirection = (param?param:1);
-  }
-
   extractInfo(data) {
     // get the planet name for each person
     this.person = data;
-    this.person.filmnames = [];
-    this.person.speciesnames = [];
-    this.person.vehiclenames = [];
-    this.person.starshipnames = [];
 
     if (data) {
       // get planet name
@@ -39,40 +31,26 @@ export class Users {
           .then(val => this.person.homeworldname = val.name);
       }
 
-      this.retrieveData(data, 'films', 'filmnames', 'title'); // get film names
-      this.retrieveData(data, 'species', 'speciesnames', 'name'); // get specie names
-      this.retrieveData(data, 'vehicles', 'vehiclenames', 'name'); // get vehicle names
-      this.retrieveData(data, 'starships', 'starshipnames', 'name'); // get starship names
+      this.retrieveData(data, 'films', 'filmsinfo', 'title'); // get film names
+      this.retrieveData(data, 'species', 'speciesinfo', 'name'); // get specie names
+      this.retrieveData(data, 'vehicles', 'vehiclesinfo', 'name'); // get vehicle names
+      this.retrieveData(data, 'starships', 'starshipsinfo', 'name'); // get starship names
     }
   }
 
   retrieveData(data, property, newProperty, oldProperty) {
     if (data.hasOwnProperty(property)) {
-      data[property].forEach((val) => {
-        this.http.fetch(val)
+
+      // make extra request to extract the name
+      data[property].forEach((link) => {
+        this.http.fetch(link)
           .then(response => response.json())
-          .then(val => this.person[newProperty].push(val[oldProperty]));
+          .then(val => {
+            if (typeof this.person[newProperty] === 'undefined') this.person[newProperty] = [];
+            this.person[newProperty].push({ name: val[oldProperty], link: link })
+          });
       })
     }
   }
 }
 
-/**
- * Sort Value Converter
- */
-export class SortValueConverter {
-  toView(people, direction) {
-    return people
-      .slice(0)
-      .sort((a, b) =>  (a.name > b.name) ? direction  : ((b.name > a.name) ? -direction : 0));
-  }
-}
-
-/**
- * Filter Value Converter
- */
-export class FilterValueConverter {
-  toView(people, text) {
-    return (text ? people.filter(value => value.name.toLowerCase().indexOf(text.toLowerCase()) > -1) : people);
-  }
-}
