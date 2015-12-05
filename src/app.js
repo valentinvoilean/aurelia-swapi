@@ -16,15 +16,15 @@ export class App {
         {route: ['', 'people'], name: 'people', moduleId: `${pagesPath}/people`, nav: true, title: 'People'},
         {route: 'person/:id', name: 'person', moduleId: `${pagesPath}/person`, nav: false, title: 'Person'},
         {route: 'movies', name: 'movies', moduleId: `${pagesPath}/movies`, nav: true, title: 'Movies'},
-        {route: 'movies/:id', name: 'movie', moduleId: `${pagesPath}/movie`, nav: false, title: 'Movie'},
+        {route: 'movie/:id', name: 'movie', moduleId: `${pagesPath}/movie`, nav: false, title: 'Movie'},
         {route: 'planets', name: 'planets', moduleId: `${pagesPath}/planets`, nav: true, title: 'Planets'},
-        {route: 'planets/:id', name: 'planet', moduleId: `${pagesPath}/planet`, nav: false, title: 'Planet'},
+        {route: 'planet/:id', name: 'planet', moduleId: `${pagesPath}/planet`, nav: false, title: 'Planet'},
         {route: 'species', name: 'species', moduleId: `${pagesPath}/species`, nav: true, title: 'Species'},
-        {route: 'species/:id', name: 'specie', moduleId: `${pagesPath}/specie`, nav: false, title: 'Specie'},
+        {route: 'specie/:id', name: 'specie', moduleId: `${pagesPath}/specie`, nav: false, title: 'Specie'},
         {route: 'vehicles', name: 'vehicles', moduleId: `${pagesPath}/vehicles`, nav: true, title: 'Vehicles'},
-        {route: 'vehicles/:id', name: 'vehicle', moduleId: `${pagesPath}/vehicle`, nav: false, title: 'Vehicle'},
+        {route: 'vehicle/:id', name: 'vehicle', moduleId: `${pagesPath}/vehicle`, nav: false, title: 'Vehicle'},
         {route: 'starships', name: 'starships', moduleId: `${pagesPath}/starships`, nav: true, title: 'Starships'},
-        {route: 'starships/:id', name: 'starship', moduleId: `${pagesPath}/starship`, nav: false, title: 'Starship'},
+        {route: 'starship/:id', name: 'starship', moduleId: `${pagesPath}/starship`, nav: false, title: 'Starship'},
       ]);
     });
   }

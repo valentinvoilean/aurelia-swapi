@@ -25,7 +25,7 @@
         <td>
           <ul>
             <li repeat.for="character of movie.charactersinfo">
-              <a href="${character.link | profileId:'people'}">${character.name}</a>
+              <a href="${character.link | profileId:'person'}">${character.name}</a>
             </li>
           </ul>
         </td>
@@ -35,7 +35,7 @@
         <td>
           <ul>
             <li repeat.for="planet of movie.planetsinfo">
-              <a href="${planet.link | profileId:'planets'}">${planet.name}</a>
+              <a href="${planet.link | profileId:'planet'}">${planet.name}</a>
             </li>
           </ul>
         </td>
@@ -45,7 +45,7 @@
         <td>
           <ul>
             <li repeat.for="specie of movie.speciesinfo">
-              <a href="${specie.link | profileId:'species'}">${specie.name}</a>
+              <a href="${specie.link | profileId:'specie'}">${specie.name}</a>
             </li>
           </ul>
         </td>
@@ -55,7 +55,7 @@
         <td>
           <ul>
             <li repeat.for="vehicle of movie.vehiclesinfo">
-              <a href="${vehicle.link | profileId:'vehicles'}">${vehicle.name}</a>
+              <a href="${vehicle.link | profileId:'vehicle'}">${vehicle.name}</a>
             </li>
           </ul>
         </td>
@@ -65,7 +65,7 @@
         <td>
           <ul>
             <li repeat.for="starship of movie.starshipsinfo">
-              <a href="${starship.link | profileId:'starships'}">${starship.name}</a>
+              <a href="${starship.link | profileId:'starship'}">${starship.name}</a>
             </li>
           </ul>
         </td>
