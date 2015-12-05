@@ -1,52 +1,52 @@
 <template>
   <require from="filters/profile-id"></require>
-
-  <section class="au-animate">
-    <h2>${heading}</h2>
-
-    <div class="row searchBar">
-      <div class="col-lg-6">
-        <div class="input-group">
-          <input type="text" class="form-control" aria-label="Filter by name"
-                 placeholder="Search name.." value.bind="searchName">
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Sort direction <span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li click.trigger="updateSortDirection(1)"><a href="#">Ascending</a></li>
-              <li click.trigger="updateSortDirection(-1)"><a href="#">Descending</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <section>
+    <h2>${planet.name}</h2>
     <table class="table table-striped">
-      <thead>
       <tr>
-        <th>Name</th>
-        <th>Height</th>
-        <th>Weight</th>
-        <th>Hair color</th>
-        <th>Skin color</th>
-        <th>Home Planet</th>
+        <td>Rotation period</td><td>${planet.rotation_period}</td>
       </tr>
-      </thead>
-      <tbody>
-      <tr repeat.for="person of people | filter: searchName | sort:sortDirection">
+      <tr>
+        <td>Orbital period</td><td>${planet.orbital_period}</td>
+      </tr>
+      <tr>
+        <td>Diameter</td><td>${planet.diameter}</td>
+      </tr>
+      <tr>
+        <td>Climate</td><td>${planet.climate}</td>
+      </tr>
+      <tr>
+        <td>Gravity</td><td>${planet.gravity}</td>
+      </tr>
+      <tr>
+        <td>Terrain</td><td>${planet.terrain}</td>
+      </tr>
+      <tr>
+        <td>Surface Water</td><td>${planet.surface_water}</td>
+      </tr>
+      <tr>
+        <td>Population</td><td>${planet.population}</td>
+      </tr>
+      <tr>
+        <td>Residents</td>
         <td>
-          <a href.bind="person.url | profileId:'person'">${person.name}</a>
-        </td>
-        <td>${person.height}</td>
-        <td>${person.mass}</td>
-        <td>${person.hair_color}</td>
-        <td>${person.skin_color}</td>
-        <td>
-          <a href.bind="person.homeworld | profileId:'planets'">${person.homeworldname}</a>
+          <ul>
+            <li repeat.for="resident of planet.residentsinfo">
+              <a href="${resident.link | profileId:'person'}">${resident.name}</a>
+            </li>
+          </ul>
         </td>
       </tr>
-      </tbody>
+      <tr>
+        <td>Films</td>
+        <td>
+          <ul>
+            <li repeat.for="movie of planet.filmsinfo">
+              <a href="${movie.link | profileId:'movie'}">${movie.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
     </table>
-
   </section>
 </template>

@@ -4,45 +4,16 @@
   <section class="au-animate">
     <h2>${heading}</h2>
 
-    <div class="row searchBar">
-      <div class="col-lg-6">
-        <div class="input-group">
-          <input type="text" class="form-control" aria-label="Filter by name"
-                 placeholder="Search name.." value.bind="searchName">
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Sort direction <span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li click.trigger="updateSortDirection(1)"><a href="#">Ascending</a></li>
-              <li click.trigger="updateSortDirection(-1)"><a href="#">Descending</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <table class="table table-striped">
       <thead>
       <tr>
         <th>Name</th>
-        <th>Height</th>
-        <th>Weight</th>
-        <th>Hair color</th>
-        <th>Skin color</th>
-        <th>Home Planet</th>
       </tr>
       </thead>
       <tbody>
-      <tr repeat.for="person of people | filter: searchName | sort:sortDirection">
+      <tr repeat.for="planet of planets">
         <td>
-          <a href.bind="person.url | profileId:'person'">${person.name}</a>
-        </td>
-        <td>${person.height}</td>
-        <td>${person.mass}</td>
-        <td>${person.hair_color}</td>
-        <td>${person.skin_color}</td>
-        <td>
-          <a href.bind="person.homeworld | profileId:'planets'">${person.homeworldname}</a>
+          <a href.bind="planet.url | profileId:'planet'">${planet.name}</a>
         </td>
       </tr>
       </tbody>

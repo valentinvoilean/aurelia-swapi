@@ -4,53 +4,48 @@ import 'fetch';
 
 @inject(HttpClient)
 export class Users {
-  heading = 'Star Wars People';
-  people = [];
-  sortDirection = 1;
   baseUrl = 'http://swapi.co/api/';
 
   constructor(http) {
     this.http = http;
   }
 
-  activate() {
-    return this.http.fetch(`${this.baseUrl}people`)
+  activate(params) {
+    return this.http.fetch(`${this.baseUrl}planets/${params.id}`)
       .then(response => response.json())
-      .then(data => this.extractInfo(data.results));
-  }
-
-  updateSortDirection(param) {
-    this.sortDirection = (param?param:1);
+      .then(data => this.extractInfo(data));
   }
 
   extractInfo(data) {
     // get the planet name for each person
-    data.forEach((val) => {
-        if (val && val.hasOwnProperty('homeworld'))
-          this.http.fetch(val.homeworld).then(response => response.json()).then(data => val.homeworldname = data.name);
-      }
-    );
+    this.planet = data;
 
-    this.people = data;
+    //prepare the data to be fetched
+    let extraInfo = [
+      { category : 'residents', info: 'residentsinfo', name: 'name', isArray: true },
+      { category : 'films', info: 'filmsinfo', name: 'title', isArray: true }
+    ];
+
+    if (data) {
+      extraInfo.forEach((val) => this.retrieveData(data, val.category, val.info, val.name, val.isArray) )
+    }
   }
-}
 
-/**
- * Sort Value Converter
- */
-export class SortValueConverter {
-  toView(people, direction) {
-    return people
-      .slice(0)
-      .sort((a, b) =>  (a.name > b.name) ? direction  : ((b.name > a.name) ? -direction : 0));
-  }
-}
+  retrieveData(data, category, info, name, isArray) {
+    if (data.hasOwnProperty(category)) {
 
-/**
- * Filter Value Converter
- */
-export class FilterValueConverter {
-  toView(people, text) {
-    return (text ? people.filter(value => value.name.toLowerCase().indexOf(text.toLowerCase()) > -1) : people);
+      let fetchData = (link) => {
+        this.http.fetch(link)
+          .then(response => response.json())
+          .then(val => {
+            if (typeof this.planet[info] === 'undefined') this.planet[info] = [];
+            this.planet[info].push({ name: val[name], link: link })
+          });
+      };
+
+      // make extra request to extract the name & the link
+      if (isArray) data[category].forEach((link) => fetchData(link));
+      else fetchData(data[category]);
+    }
   }
 }
