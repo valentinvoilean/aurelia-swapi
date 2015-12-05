@@ -16,11 +16,11 @@ export class Users {
     this.retrieveExtraData = retrieveExtraData;
   }
 
-  activate(params) {
-    return this.http.fetch(`${this.baseUrl}vehicles/${params.id}`)
+  async activate(params) {
+    this.vehicle = await this.http.fetch(`${this.baseUrl}vehicles/${params.id}`)
       .then(response => response.json())
       .then(data => {
-        this.vehicle = this.retrieveExtraData.extractInfo(data, this.dataSettings);
+        return this.retrieveExtraData.extractInfo(data, this.dataSettings);
       });
   }
 }

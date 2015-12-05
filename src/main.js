@@ -1,3 +1,6 @@
+import regeneratorRuntime from 'babel-runtime/regenerator';
+window.regeneratorRuntime = regeneratorRuntime;
+
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
