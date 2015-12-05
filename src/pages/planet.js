@@ -14,7 +14,6 @@ export class Users {
   }
 
   async activate(params) {
-    this.planet = await this.retrieveExtraData
-      .init(`${this.baseUrl}planets/${params.id}`, this.dataSettings)
+    this.planet = await this.retrieveExtraData.init(`planets/${params.id}`, this.dataSettings)
   }
 }

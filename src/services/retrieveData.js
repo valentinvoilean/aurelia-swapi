@@ -4,13 +4,14 @@ import 'fetch';
 
 @inject(HttpClient)
 export class RetrieveExtraData {
+  baseUrl = 'http://swapi.co/api/';
 
   constructor(http) {
     this.http = http;
   }
 
   init(url, dataSettings) {
-    return this.http.fetch(url) // fetch main data
+    return this.http.fetch(this.baseUrl + url) // fetch main data
       .then(response => response.json())
       .then(data => {
         this.data = data;

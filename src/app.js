@@ -24,7 +24,7 @@ export class App {
         {route: 'vehicles', name: 'vehicles', moduleId: `${pagesPath}/vehicles`, nav: true, title: 'Vehicles'},
         {route: 'vehicle/:id', name: 'vehicle', moduleId: `${pagesPath}/vehicle`, nav: false, title: 'Vehicle'},
         {route: 'starships', name: 'starships', moduleId: `${pagesPath}/starships`, nav: true, title: 'Starships'},
-        {route: 'starship/:id', name: 'starship', moduleId: `${pagesPath}/starship`, nav: false, title: 'Starship'},
+        {route: 'starship/:id', name: 'starship', moduleId: `${pagesPath}/starship`, nav: false, title: 'Starship'}
       ]);
     });
   }
