@@ -20,8 +20,6 @@ export class Users {
   changePage(param) {
     if (param === 1 && this.nextPage) this.fetchData(this.nextPage);
     else if (this.prevPage) this.fetchData(this.prevPage);
-
-    this.checkButtonState();
   }
 
   fetchData(url) {
@@ -31,14 +29,8 @@ export class Users {
           this.prevPage = data.previous;
           this.nextPage = data.next;
           this.extractInfo(data.results);
-          this.checkButtonState();
         }
       );
-  }
-
-  checkButtonState() {
-    this.prevButtonState = this.prevPage ? false:true;
-    this.nextButtonState = this.nextPage ? false:true;
   }
 
   updateSortDirection(param) {
