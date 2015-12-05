@@ -1,0 +1,75 @@
+<template>
+  <require from="filters/profile-id"></require>
+
+  <section>
+    <article>
+      <h2>${movie.title}</h2>
+
+      <p class="description">
+        ${movie.opening_crawl}
+      </p>
+    </article>
+
+    <table class="table table-striped">
+      <tr>
+        <td>Director</td><td>${movie.director}</td>
+      </tr>
+      <tr>
+        <td>Producer</td><td>${movie.producer}</td>
+      </tr>
+      <tr>
+        <td>Release date</td><td>${movie.release_date}</td>
+      </tr>
+      <tr>
+        <td>Characters</td>
+        <td>
+          <ul>
+            <li repeat.for="character of movie.charactersinfo">
+              <a href="${character.link | profileId:'people'}">${character.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Planets</td>
+        <td>
+          <ul>
+            <li repeat.for="planet of movie.planetsinfo">
+              <a href="${planet.link | profileId:'planets'}">${planet.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Species</td>
+        <td>
+          <ul>
+            <li repeat.for="specie of movie.speciesinfo">
+              <a href="${specie.link | profileId:'species'}">${specie.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Vehicles</td>
+        <td>
+          <ul>
+            <li repeat.for="vehicle of movie.vehiclesinfo">
+              <a href="${vehicle.link | profileId:'vehicles'}">${vehicle.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Starships</td>
+        <td>
+          <ul>
+            <li repeat.for="starship of movie.starshipsinfo">
+              <a href="${starship.link | profileId:'starships'}">${starship.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </section>
+</template>
