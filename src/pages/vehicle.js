@@ -1,51 +1,26 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
+import {RetrieveExtraData} from 'services/retrieveData';
 import 'fetch';
 
-@inject(HttpClient)
+@inject(HttpClient, RetrieveExtraData)
 export class Users {
   baseUrl = 'http://swapi.co/api/';
+  dataSettings = [ //prepare the additional data to be fetched;
+    { category : 'pilots', info: 'pilotsinfo', name: 'name', isArray: true },
+    { category : 'films', info: 'filmsinfo', name: 'title', isArray: true }
+  ];
 
-  constructor(http) {
+  constructor(http , retrieveExtraData) {
     this.http = http;
+    this.retrieveExtraData = retrieveExtraData;
   }
 
   activate(params) {
     return this.http.fetch(`${this.baseUrl}vehicles/${params.id}`)
       .then(response => response.json())
-      .then(data => this.extractInfo(data));
-  }
-
-  extractInfo(data) {
-    // get the planet name for each person
-    this.vehicle = data;
-
-    //prepare the data to be fetched
-    let extraInfo = [
-      { category : 'pilots', info: 'pilotsinfo', name: 'name', isArray: true },
-      { category : 'films', info: 'filmsinfo', name: 'title', isArray: true }
-    ];
-
-    if (data) {
-      extraInfo.forEach((val) => this.retrieveData(data, val.category, val.info, val.name, val.isArray) )
-    }
-  }
-
-  retrieveData(data, category, info, name, isArray) {
-    if (data.hasOwnProperty(category)) {
-
-      let fetchData = (link) => {
-        this.http.fetch(link)
-          .then(response => response.json())
-          .then(val => {
-            if (typeof this.vehicle[info] === 'undefined') this.vehicle[info] = [];
-            this.vehicle[info].push({ name: val[name], link: link })
-          });
-      };
-
-      // make extra request to extract the name & the link
-      if (isArray) data[category].forEach((link) => fetchData(link));
-      else fetchData(data[category]);
-    }
+      .then(data => {
+        this.vehicle = this.retrieveExtraData.extractInfo(data, this.dataSettings);
+      });
   }
 }
