@@ -19,7 +19,11 @@
       </tr><tr>
         <td>Gender</td><td>${person.gender}</td>
       </tr><tr>
-        <td>Home Planet</td><td>${person.homeworldname}</td>
+        <td>Home Planet</td>
+        <td>
+          <a repeat.for="homeworld of person.homeworldinfo"
+             href="${homeworld.link | profileId:'planets'}">${homeworld.name}</a>
+        </td>
       </tr><tr>
         <td>Films</td>
         <td>

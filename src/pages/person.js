@@ -4,9 +4,6 @@ import 'fetch';
 
 @inject(HttpClient)
 export class Users {
-  heading = '';
-  people = [];
-  sortDirection = 1;
   baseUrl = 'http://swapi.co/api/';
 
   constructor(http) {
@@ -23,33 +20,35 @@ export class Users {
     // get the planet name for each person
     this.person = data;
 
-    if (data) {
-      // get planet name
-      if (data.hasOwnProperty('homeworld')) {
-        this.http.fetch(data.homeworld)
-          .then(response => response.json())
-          .then(val => this.person.homeworldname = val.name);
-      }
+    //prepare the data to be fetched
+    let extraInfo = [
+      { category : 'homeworld', info: 'homeworldinfo', name: 'name', isArray: false },
+      { category : 'films', info: 'filmsinfo', name: 'title', isArray: true },
+      { category : 'species', info: 'speciesinfo', name: 'name', isArray: true },
+      { category : 'vehicles', info: 'vehiclesinfo', name: 'name', isArray: true },
+      { category : 'starships', info: 'starshipsinfo', name: 'name', isArray: true }
+    ];
 
-      this.retrieveData(data, 'films', 'filmsinfo', 'title'); // get film names
-      this.retrieveData(data, 'species', 'speciesinfo', 'name'); // get specie names
-      this.retrieveData(data, 'vehicles', 'vehiclesinfo', 'name'); // get vehicle names
-      this.retrieveData(data, 'starships', 'starshipsinfo', 'name'); // get starship names
+    if (data) {
+      extraInfo.forEach((val) => this.retrieveData(data, val.category, val.info, val.name, val.isArray) )
     }
   }
 
-  retrieveData(data, property, newProperty, oldProperty) {
-    if (data.hasOwnProperty(property)) {
+  retrieveData(data, category, info, name, isArray) {
+    if (data.hasOwnProperty(category)) {
 
-      // make extra request to extract the name
-      data[property].forEach((link) => {
+      let fetchData = (link) => {
         this.http.fetch(link)
           .then(response => response.json())
           .then(val => {
-            if (typeof this.person[newProperty] === 'undefined') this.person[newProperty] = [];
-            this.person[newProperty].push({ name: val[oldProperty], link: link })
+            if (typeof this.person[info] === 'undefined') this.person[info] = [];
+            this.person[info].push({ name: val[name], link: link })
           });
-      })
+      };
+
+      // make extra request to extract the name & the link
+      if (isArray) data[category].forEach((link) => fetchData(link));
+      else fetchData(data[category]);
     }
   }
 }
