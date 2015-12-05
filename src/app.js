@@ -1,35 +1,31 @@
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import {HttpClient} from 'aurelia-http-client';
 import 'bootstrap';
 import 'bootstrap/css/bootstrap.css!';
 
 let pagesPath = './pages';
 
-@inject(Router, HttpClient)
+@inject(Router)
 export class App {
-  constructor(router, client) {
+  constructor(router) {
     this.router = router;
-    this.client = client;
 
     this.router.configure(config => {
       config.title = 'SWAPI';
       config.map([
         {route: ['', 'people'], name: 'people', moduleId: `${pagesPath}/people`, nav: true, title: 'People'},
         {route: 'person/:id', name: 'person', moduleId: `${pagesPath}/person`, nav: false, title: 'Person'},
-        /*{route: ['', 'planets'], name: 'planets', moduleId: `${pagesPath}/planets`, nav: true, title: 'Planets'},
-        {route: ['', 'movies'], name: 'movies', moduleId: `${pagesPath}/movies`, nav: true, title: 'Movies'}*/
-
-        /*{route: ['', 'contacts'], moduleId: './contacts', nav: true, title: 'Contacts'},
-        {route: 'contacts/!*id', moduleId: './edit', title: 'Edit Contact'},
-        {route: 'insert', moduleId: './insert', title: 'Insert Contact'}*/
+        {route: 'movies', name: 'movies', moduleId: `${pagesPath}/movies`, nav: true, title: 'Movies'},
+        {route: 'movies/:id', name: 'movie', moduleId: `${pagesPath}/movie`, nav: false, title: 'Movie'},
+        {route: 'planets', name: 'planets', moduleId: `${pagesPath}/planets`, nav: true, title: 'Planets'},
+        {route: 'planets/:id', name: 'planet', moduleId: `${pagesPath}/planet`, nav: false, title: 'Planet'},
+        {route: 'species', name: 'species', moduleId: `${pagesPath}/species`, nav: true, title: 'Species'},
+        {route: 'species/:id', name: 'specie', moduleId: `${pagesPath}/specie`, nav: false, title: 'Specie'},
+        {route: 'vehicles', name: 'vehicles', moduleId: `${pagesPath}/vehicles`, nav: true, title: 'Vehicles'},
+        {route: 'vehicles/:id', name: 'vehicle', moduleId: `${pagesPath}/vehicle`, nav: false, title: 'Vehicle'},
+        {route: 'starships', name: 'starships', moduleId: `${pagesPath}/starships`, nav: true, title: 'Starships'},
+        {route: 'starships/:id', name: 'starship', moduleId: `${pagesPath}/starship`, nav: false, title: 'Starship'},
       ]);
     });
-
-    this.client.configure(x => {
-      x.withBaseUrl('http://swapi.co/api/');
-      x.withHeader('accept', 'application/json')
-    });
-
   }
 }
