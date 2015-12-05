@@ -5,26 +5,41 @@
     <h2>${person.name}</h2>
     <table class="table table-striped">
       <tr>
-        <td>Height</td><td>${person.height}</td>
-      </tr><tr>
-        <td>Weight</td><td>${person.mass}</td>
-      </tr><tr>
-        <td>Hair Color</td><td>${person.hair_color}</td>
-      </tr><tr>
-        <td>Skin Color</td><td>${person.skin_color}</td>
-      </tr><tr>
-        <td>Eye Color</td><td>${person.eye_color}</td>
-      </tr><tr>
-        <td>Birth Year</td><td>${person.birth_year}</td>
-      </tr><tr>
-        <td>Gender</td><td>${person.gender}</td>
-      </tr><tr>
+        <td>Height</td>
+        <td>${person.height}</td>
+      </tr>
+      <tr>
+        <td>Weight</td>
+        <td>${person.mass}</td>
+      </tr>
+      <tr>
+        <td>Hair Color</td>
+        <td>${person.hair_color}</td>
+      </tr>
+      <tr>
+        <td>Skin Color</td>
+        <td>${person.skin_color}</td>
+      </tr>
+      <tr>
+        <td>Eye Color</td>
+        <td>${person.eye_color}</td>
+      </tr>
+      <tr>
+        <td>Birth Year</td>
+        <td>${person.birth_year}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>${person.gender}</td>
+      </tr>
+      <tr>
         <td>Home Planet</td>
         <td>
           <a repeat.for="homeworld of person.homeworldinfo"
              href="${homeworld.link | profileId:'planet'}">${homeworld.name}</a>
         </td>
-      </tr><tr>
+      </tr>
+      <tr>
         <td>Films</td>
         <td>
           <ul>
@@ -33,7 +48,8 @@
             </li>
           </ul>
         </td>
-      </tr><tr>
+      </tr>
+      <tr>
         <td>Species</td>
         <td>
           <ul>
@@ -42,7 +58,8 @@
             </li>
           </ul>
         </td>
-      </tr><tr>
+      </tr>
+      <tr>
         <td>Vehicles</td>
         <td>
           <ul>
@@ -51,7 +68,8 @@
             </li>
           </ul>
         </td>
-      </tr><tr>
+      </tr>
+      <tr>
         <td>Starships</td>
         <td>
           <ul>

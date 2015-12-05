@@ -1,0 +1,68 @@
+<template>
+  <require from="filters/profile-id"></require>
+  <section>
+    <h2>${vehicle.name}</h2>
+    <table class="table table-striped">
+      <tr>
+        <td>Model</td>
+        <td>${vehicle.model}</td>
+      </tr>
+      <tr>
+        <td>Manufacturer</td>
+        <td>${vehicle.manufacturer}</td>
+      </tr>
+      <tr>
+        <td>Cost in credits</td>
+        <td>${vehicle.cost_in_credits}</td>
+      </tr>
+      <tr>
+        <td>Length</td>
+        <td>${vehicle.length}</td>
+      </tr>
+      <tr>
+        <td>Max atmosphering speed</td>
+        <td>${vehicle.max_atmosphering_speed}</td>
+      </tr>
+      <tr>
+        <td>Crew</td>
+        <td>${vehicle.crew}</td>
+      </tr>
+      <tr>
+        <td>Passengers</td>
+        <td>${vehicle.passengers}</td>
+      </tr>
+      <tr>
+        <td>Cargo capacity</td>
+        <td>${vehicle.cargo_capacity}</td>
+      </tr>
+      <tr>
+        <td>Consumables</td>
+        <td>${vehicle.consumables}</td>
+      </tr>
+      <tr>
+        <td>Vehicle class</td>
+        <td>${vehicle.vehicle_class}</td>
+      </tr>
+      <tr>
+        <td>Pilots</td>
+        <td>
+          <ul>
+            <li repeat.for="pilor of vehicle.pilotsinfo">
+              <a href="${pilor.link | profileId:'person'}">${pilor.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Films</td>
+        <td>
+          <ul>
+            <li repeat.for="movie of vehicle.filmsinfo">
+              <a href="${movie.link | profileId:'movie'}">${movie.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </section>
+</template>

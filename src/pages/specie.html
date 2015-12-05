@@ -1,0 +1,67 @@
+<template>
+  <require from="filters/profile-id"></require>
+  <section>
+    <h2>${specie.name}</h2>
+    <table class="table table-striped">
+      <tr>
+        <td>Classification</td>
+        <td>${specie.classification}</td>
+      </tr>
+      <tr>
+        <td>Designation</td>
+        <td>${specie.designation}</td>
+      </tr>
+      <tr>
+        <td>Average Height</td>
+        <td>${specie.average_height}</td>
+      </tr>
+      <tr>
+        <td>Skin Colors</td>
+        <td>${specie.skin_colors}</td>
+      </tr>
+      <tr>
+        <td>Hair Colors</td>
+        <td>${specie.hair_colors}</td>
+      </tr>
+      <tr>
+        <td>Eye Colors</td>
+        <td>${specie.eye_colors}</td>
+      </tr>
+      <tr>
+        <td>Average Lifespan</td>
+        <td>${specie.average_lifespan}</td>
+      </tr>
+      <tr>
+        <td>Language</td>
+        <td>${specie.language}</td>
+      </tr>
+      <tr>
+        <td>Home Planet</td>
+        <td>
+          <a repeat.for="homeworld of specie.homeworldinfo"
+             href="${homeworld.link | profileId:'planet'}">${homeworld.name}</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Residents</td>
+        <td>
+          <ul>
+            <li repeat.for="person of specie.peopleinfo">
+              <a href="${person.link | profileId:'person'}">${person.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Films</td>
+        <td>
+          <ul>
+            <li repeat.for="movie of specie.filmsinfo">
+              <a href="${movie.link | profileId:'movie'}">${movie.name}</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </section>
+</template>
