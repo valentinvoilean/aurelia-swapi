@@ -7,16 +7,38 @@ export class Users {
   heading = 'Star Wars People';
   people = [];
   sortDirection = 1;
-  baseUrl = 'http://swapi.co/api/';
+  baseUrl = 'http://swapi.co/api/people/?page=';
 
   constructor(http) {
     this.http = http;
   }
 
-  activate() {
-    return this.http.fetch(`${this.baseUrl}people`)
+  activate(params) {
+    return this.fetchData(this.baseUrl + (params.id ? params.id: 1));
+  }
+
+  changePage(param) {
+    if (param === 1 && this.nextPage) this.fetchData(this.nextPage);
+    else if (this.prevPage) this.fetchData(this.prevPage);
+
+    this.checkButtonState();
+  }
+
+  fetchData(url) {
+    this.http.fetch(url)
       .then(response => response.json())
-      .then(data => this.extractInfo(data.results));
+      .then(data => {
+          this.prevPage = data.previous;
+          this.nextPage = data.next;
+          this.extractInfo(data.results);
+          this.checkButtonState();
+        }
+      );
+  }
+
+  checkButtonState() {
+    this.prevButtonState = this.prevPage ? false:true;
+    this.nextButtonState = this.nextPage ? false:true;
   }
 
   updateSortDirection(param) {

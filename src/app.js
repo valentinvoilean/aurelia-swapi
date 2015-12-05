@@ -14,6 +14,7 @@ export class App {
       config.title = 'SWAPI';
       config.map([
         {route: ['', 'people'], name: 'people', moduleId: `${pagesPath}/people`, nav: true, title: 'People'},
+        {route: 'people/:id', name: 'people', moduleId: `${pagesPath}/people`, title: 'People'},
         {route: 'person/:id', name: 'person', moduleId: `${pagesPath}/person`, nav: false, title: 'Person'},
         {route: 'movies', name: 'movies', moduleId: `${pagesPath}/movies`, nav: true, title: 'Movies'},
         {route: 'movie/:id', name: 'movie', moduleId: `${pagesPath}/movie`, nav: false, title: 'Movie'},

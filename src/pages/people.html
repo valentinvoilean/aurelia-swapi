@@ -49,5 +49,10 @@
       </tbody>
     </table>
 
+    <div class="btn-group" role="group" aria-label="...">
+      <button disabled.bind="prevButtonState" click.trigger="changePage(-1)" type="button" class="btn btn-default">Preview</button>
+      <button disabled.bind="nextButtonState" click.trigger="changePage(1)" type="button" class="btn btn-default">Next</button>
+    </div>
+
   </section>
 </template>
