@@ -3,7 +3,9 @@
 
   <nav-bar router.bind="router"></nav-bar>
 
-  <div class="page-host">
-    <router-view></router-view>
-  </div>
+  <section class="mainWrapper__base">
+    <div class="mainWrapper__background"></div>
+    <div class="mainWrapper__background"></div>
+    <router-view class="mainWrapper__view"></router-view>
+  </section>
 </template>

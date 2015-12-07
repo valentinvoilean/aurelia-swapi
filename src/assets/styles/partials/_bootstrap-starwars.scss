@@ -1,0 +1,48 @@
+.navbar-starwars {
+  border-bottom: 1px solid $c-7;
+  background-color: $c-6;
+
+  .navbar {
+
+    &-collapse,
+    &-form {
+      border-bottom: 1px solid $c-7;
+      background-color: $c-6;
+    }
+
+    &-brand {
+      color: $c-4;
+
+      &:hover,
+      &:focus {
+        color: $c-1;
+      }
+    }
+
+    &-nav {
+      & > li {
+        @media (min-width: $screen-sm-min) {
+          border-left: 1px solid $c-7;
+        }
+
+        & > a {
+          &:hover,
+          &:focus {
+            color: $c-8;
+          }
+        }
+      }
+
+      .active {
+        & > a {
+          background: $c-4;
+
+          &:hover,
+          &:focus {
+            background: $c-4;
+          }
+        }
+      }
+    }
+  }
+}

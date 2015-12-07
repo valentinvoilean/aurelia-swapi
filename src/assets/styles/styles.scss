@@ -1,5 +1,27 @@
-@import 'partials/aurelia-styles';
+$fa-font-path: jspm_resolve("font-awesome/fonts/");
 
-.searchBar {
-  margin-bottom: 20px;
-}
+@import "jspm:normalize.scss/normalize";
+@import "jspm:bootstrap-sass/assets/stylesheets/bootstrap";
+@import "jspm:font-awesome/scss/font-awesome";
+@import 'partials/aurelia-styles'; // default styles from aurelia skeleton
+
+// Fonts
+@import 'partials/fonts';
+
+// Colors
+@import 'partials/colors';
+
+// Base styles
+@import 'partials/base';
+
+// Starwars theme for bootstrap (custom made )
+@import 'partials/bootstrap-starwars';
+
+// Main Wrapper
+@import 'partials/mainwrapper';
+
+// Simple list styles for Movies / Planets / Species / Vehicles / Starships
+@import 'partials/simplelist';
+
+// inline list items
+@import "partials/inlinelistitems";

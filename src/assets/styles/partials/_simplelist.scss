@@ -1,0 +1,30 @@
+.simpleList {
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  &__link {
+    color: $c-12;
+    background: $c-9;
+    border-radius: 7px;
+    width: 100%;
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'starWars';
+
+    &:hover {
+      background: $c-6;
+      color: $c-4;
+      text-decoration: none;
+    }
+  }
+}

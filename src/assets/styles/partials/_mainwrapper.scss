@@ -1,0 +1,64 @@
+.mainWrapper {
+
+  &__base {
+    background: $c-5;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    height: calc(100% - 50px);
+  }
+
+  &__background {
+    background: url("../images/background.jpg") repeat-y;
+    background-position: left center;
+    position: absolute;
+    left: 0;
+    background-size: 100% auto;
+    width: 200px;
+    height: 100%;
+    top: 0;
+
+    & + & {
+      left: auto;
+      right: 0;
+      transform: scaleX(-1);
+    }
+  }
+
+  &__view {
+    position: relative;
+
+    .table {
+      & > tbody > tr > td {
+        border-top: 0;
+        color: #b9b9b9;
+
+        a {
+          color: $c-2;
+          background: $c-9;
+          border-radius: 7px;
+          width: 100%;
+          display: inline-block;
+          padding-left: 10px;
+
+          &:hover {
+            background: $c-4;
+            color: $c-10;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__description {
+    margin: 45px 0;
+    font-style: italic;
+    color: $c-12;
+  }
+}

@@ -1,8 +1,8 @@
 <template>
   <require from="filters/profile-id"></require>
   <section>
-    <h2>${specie.name}</h2>
-    <table class="table table-striped">
+    <h1>${specie.name}</h1>
+    <table class="table">
       <tr>
         <td>Classification</td>
         <td>${specie.classification}</td>
@@ -38,14 +38,17 @@
       <tr>
         <td>Home Planet</td>
         <td>
-          <a repeat.for="homeworld of specie.homeworldinfo"
-             href="${homeworld.link | profileId:'planet'}">${homeworld.name}</a>
+          <ul class="inlineListItems">
+            <li repeat.for="homeworld of specie.homeworldinfo">
+              <a href="${homeworld.link | profileId:'planet'}">${homeworld.name}</a>
+            </li>
+          </ul>
         </td>
       </tr>
       <tr>
         <td>Residents</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="person of specie.peopleinfo">
               <a href="${person.link | profileId:'person'}">${person.name}</a>
             </li>
@@ -55,7 +58,7 @@
       <tr>
         <td>Films</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="movie of specie.filmsinfo">
               <a href="${movie.link | profileId:'movie'}">${movie.name}</a>
             </li>

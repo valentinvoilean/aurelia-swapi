@@ -2,8 +2,8 @@
   <require from="filters/profile-id"></require>
 
   <section>
-    <h2>${person.name}</h2>
-    <table class="table table-striped">
+    <h1>${person.name}</h1>
+    <table class="table">
       <tr>
         <td>Height</td>
         <td>${person.height}</td>
@@ -35,14 +35,17 @@
       <tr>
         <td>Home Planet</td>
         <td>
-          <a repeat.for="homeworld of person.homeworldinfo"
-             href="${homeworld.link | profileId:'planet'}">${homeworld.name}</a>
+          <ul class="inlineListItems">
+            <li repeat.for="homeworld of person.homeworldinfo">
+              <a href="${homeworld.link | profileId:'planet'}">${homeworld.name}</a>
+            </li>
+          </ul>
         </td>
       </tr>
       <tr>
         <td>Films</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="film of person.filmsinfo">
               <a href="${film.link | profileId:'movie'}">${film.name}</a>
             </li>
@@ -52,7 +55,7 @@
       <tr>
         <td>Species</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="specie of person.speciesinfo">
               <a href="${specie.link | profileId:'specie'}">${specie.name}</a>
             </li>
@@ -62,7 +65,7 @@
       <tr>
         <td>Vehicles</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="vehicle of person.vehiclesinfo">
               <a href="${vehicle.link | profileId:'vehicle'}">${vehicle.name}</a>
             </li>
@@ -72,7 +75,7 @@
       <tr>
         <td>Starships</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="starship of person.starshipsinfo">
               <a href="${starship.link | profileId:'starship'}">${starship.name}</a>
             </li>

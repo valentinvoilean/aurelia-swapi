@@ -1,8 +1,8 @@
 <template>
   <require from="filters/profile-id"></require>
   <section>
-    <h2>${planet.name}</h2>
-    <table class="table table-striped">
+    <h1>${planet.name}</h1>
+    <table class="table">
       <tr>
         <td>Rotation period</td>
         <td>${planet.rotation_period}</td>
@@ -38,7 +38,7 @@
       <tr>
         <td>Residents</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="resident of planet.residentsinfo">
               <a href="${resident.link | profileId:'person'}">${resident.name}</a>
             </li>
@@ -48,7 +48,7 @@
       <tr>
         <td>Films</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="movie of planet.filmsinfo">
               <a href="${movie.link | profileId:'movie'}">${movie.name}</a>
             </li>

@@ -1,0 +1,13 @@
+.inlineListItems {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+
+    a {
+      padding-right: 10px;
+    }
+  }
+}

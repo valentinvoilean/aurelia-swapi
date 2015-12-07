@@ -9,6 +9,7 @@ var compilerOptions = require('../babel-options');
 var assign = Object.assign || require('object.assign');
 var notify = require("gulp-notify");
 var sass = require('gulp-sass');
+var sassJspm = require('sass-jspm-importer');
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents 'pipe breaking' caused
@@ -35,9 +36,25 @@ gulp.task('build-html', function() {
 gulp.task('build-scss', function () {
   gulp.src(paths.scss)
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      errLogToConsole: true,
+      functions: sassJspm.resolve_function('/jspm_packages/'),
+      importer: sassJspm.importer
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.stylesOutput));
+});
+
+// copy all the fonts
+gulp.task('copy-fonts', function() {
+  return gulp.src([paths.fonts])
+    .pipe(gulp.dest(paths.fontsOutput));
+});
+
+// copy all the images
+gulp.task('copy-images', function() {
+  return gulp.src(paths.images)
+    .pipe(gulp.dest(paths.imagesOutput));
 });
 
 // this task calls the clean task (located
@@ -47,7 +64,7 @@ gulp.task('build-scss', function () {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'build-scss'],
+    ['build-system', 'build-html', 'build-scss', 'copy-fonts', 'copy-images'],
     callback
   );
 });

@@ -1,0 +1,40 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: $c-1;
+  background-color: $c-3;
+}
+
+
+.searchBar {
+  margin-bottom: 20px;
+}
+
+.splash {
+
+  color: $c-4;
+
+  .message {
+    font-family: 'StarWars';
+  }
+}
+
+.navbar-brand {
+  font-family: 'StarWars';
+}
+
+h1 {
+  text-transform: uppercase;
+  height: 35px;
+  border-top: 2px $c-11 solid;
+  border-bottom: 2px $c-11 solid;
+  padding-left: 15px;
+  line-height: 33px;
+  margin-bottom: 17px;
+  color: $c-12;
+  font-size: 16px;
+  text-align: left;
+}

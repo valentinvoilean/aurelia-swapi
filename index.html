@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
   <head>
+    <meta charset="utf-8" />
+    <!-- title -->
     <title>Aurelia</title>
-    <link rel="stylesheet" href="jspm_packages/npm/font-awesome@4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- some basic metas -->
+    <meta name="description" content="Aurelia App using Star Wars API" />
+    <meta name="author" content="Valentin-Marian Voilean" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
   </head>
 
   <body aurelia-app="main">
+
     <div class="splash">
-      <div class="message">Aurelia Navigation Skeleton</div>
+      <div class="message">Star Wars</div>
       <i class="fa fa-spinner fa-spin"></i>
     </div>
 
+    <!-- SCRIPTS -->
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
     <script>
       System.import('aurelia-bootstrapper');
     </script>
+    <!-- END SCRIPTS -->
   </body>
 </html>

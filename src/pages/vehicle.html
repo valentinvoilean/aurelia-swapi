@@ -1,8 +1,8 @@
 <template>
   <require from="filters/profile-id"></require>
   <section>
-    <h2>${vehicle.name}</h2>
-    <table class="table table-striped">
+    <h1>${vehicle.name}</h1>
+    <table class="table">
       <tr>
         <td>Model</td>
         <td>${vehicle.model}</td>
@@ -46,7 +46,7 @@
       <tr>
         <td>Pilots</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="pilor of vehicle.pilotsinfo">
               <a href="${pilor.link | profileId:'person'}">${pilor.name}</a>
             </li>
@@ -56,7 +56,7 @@
       <tr>
         <td>Films</td>
         <td>
-          <ul>
+          <ul class="inlineListItems">
             <li repeat.for="movie of vehicle.filmsinfo">
               <a href="${movie.link | profileId:'movie'}">${movie.name}</a>
             </li>
